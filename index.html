@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage Card</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .frame {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      padding: 180px 180px 180px 180px; /* Increased padding */
+      width: 1044px; /* Increased from 944px */
+      height: 623px; /* Increased from 523px */
+      overflow: hidden;/* 四个角的圆角都是 8px */
+border-radius: 14px; 
+
+    }
+
+    .frame .instance {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      border-radius: 12px;
+      padding-top: 24px;
+      padding-left: 20px;
+      width: 266px;
+      height: 217px;
+      overflow: hidden;
+      background-image: linear-gradient(180deg, #644c42 0%, #111010 100%);
+      cursor: pointer;
+    }
+    
+    /* New Hover Content Styles */
+    .hover-content {
+      position: absolute;
+      top: -75px;
+      left: -32px;
+      right: -32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transform: translateY(-30px) scale(0.5);
+      z-index: 10;
+    }
+
+    .frame .instance:hover .hover-content {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+      transition-delay: 0.1s;
+    }
+
+    .autoWrapper-hover {
+      position: relative;
+      margin-top: -1px;
+      width: 331px;
+      height: 165px;
+    }
+
+    .blur-bg-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 331px;
+      height: 165px;
+      filter: blur(38px);
+      pointer-events: none;
+    }
+
+    .text-container {
+      display: flex;
+      position: absolute;
+      bottom: -25px;
+      left: 51px;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 229px;
+      height: 66px;
+    }
+
+    .hover-text {
+      display: -webkit-box;
+      width: 229px;
+      overflow: hidden;
+      text-align: center;
+      line-height: 24px;
+      color: #ffffff;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+
+    .hover-actions {
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-top: 58px;
+    }
+
+    .hover-icon-btn, .hover-text-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(21, 21, 21, 0.35);
+      border-radius: 100px;
+      height: 36px;
+      backdrop-filter: blur(16px);
+      cursor: pointer;
+      color: #ffffff;
+      transition: background 0.2s;
+    }
+
+    .hover-icon-btn:hover, .hover-text-btn:hover {
+      background: rgba(21, 21, 21, 0.45);
+    }
+
+    .hover-icon-btn {
+      width: 36px;
+      padding: 10px;
+    }
+
+    .hover-text-btn {
+      padding: 0 16px;
+      gap: 4px;
+    }
+
+    .hover-text-btn span {
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.21px;
+    }
+    
+    .frame .instance .group2147224610 {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      align-items: flex-start;
+      margin-right: -23px;
+      padding: 1px 61px 9px 1px;
+      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transform-origin: center center;
+    }
+    
+    .frame .instance:hover .group2147224610 {
+      transform: translate(-15px, 30px) scale(0.5);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .frame .instance .group2147224610 .text {
+      padding: 0px 1px 1px;
+      line-height: 26px;
+      letter-spacing: 0;
+      color: var(--token-bg-body, #ffffff);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 17px;
+      font-weight: 400; /* Normal weight */
+    }
+    .frame .instance .group2147224610 .autoWrapper {
+      position: relative;
+      margin-top: 19px;
+      margin-left: 29px;
+      width: 179px;
+      height: 222px;
+    }
+    .frame .instance .group2147224610 .autoWrapper .rectangle1329137786 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: 1px solid rgba(255, 255, 255, 0.031372549);
+      border-radius: 24px;
+      background: rgba(227, 199, 188, 0.031372549);
+      width: 179px;
+      height: 222px;
+      rotate: -6deg;
+    }
+    .frame .instance .group2147224610 .autoWrapper .ellipse34735 {
+      position: absolute;
+      top: 44px;
+      left: 63px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.2392156863);
+      width: 42px;
+      height: 60px;
+      filter: blur(16px);
+    }
+    .frame .instance .group2147224610 .autoWrapper .group2147224561 {
+      position: absolute;
+      top: 7px;
+      right: -8px;
+      width: 205px;
+      height: 117px;
+    }
+    .frame .instance .group2147224610 .autoWrapper .group2147224559 {
+      position: absolute;
+      top: -36px;
+      left: 11px;
+      width: 162px;
+      height: 220px;
+      rotate: -90deg;
+    }
+    .frame .instance .group2147224610 .autoWrapper .frame2147225470 {
+      display: flex;
+      position: absolute;
+      top: 39px;
+      left: 60px;
+      align-items: center;
+      outline-width: 3px;
+      outline-style: solid;
+      outline-color: rgba(255, 210, 196, 0.1019607843);
+      border-radius: 1224px;
+      width: 49px;
+      height: 49px;
+      overflow: hidden;
+    }
+    .frame .instance .group2147224610 .autoWrapper .frame2147225470 .image1636403543 {
+      margin-left: -2px;
+      border-radius: 65px;
+      width: 53px;
+      height: 53px;
+    }
+    .frame .instance .group2147224610 .autoWrapper .union {
+      display: flex;
+      position: absolute;
+      top: 12px;
+      left: -28px;
+      align-items: center;
+      background: var(--token-bg-base);
+      padding: 3px 10px 3px 7px;
+      width: 86px;
+      height: 23px;
+      background-image: url(./.figma/image/mo0wlbyv-4m8wi6v.svg);
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      filter: drop-shadow(2px 6px 25px rgba(0, 0, 0, 0.1098039216));
+    }
+    .frame .instance .group2147224610 .autoWrapper .union .frame2147225471 {
+      display: inline-flex;
+      flex-grow: 1;
+      align-items: center;
+      column-gap: 3px;
+    }
+    .frame .instance .group2147224610 .autoWrapper .union .frame2147225471 .iconEducationAiOutli {
+      flex-shrink: 0;
+      width: 10px;
+      height: 10px;
+    }
+    .frame .instance .group2147224610 .autoWrapper .union .frame2147225471 .text2 {
+      flex-shrink: 0;
+      line-height: 15px;
+      letter-spacing: 0;
+      color: #000000;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 9px;
+    }
+    .frame .instance .group2147224610 .autoWrapper .group2147224608 {
+      display: flex;
+      position: absolute;
+      top: 22px;
+      right: -61px;
+      align-items: center;
+      opacity: 0.9;
+      padding: 1px 1px 1px 0px;
+      width: 124px;
+      height: 27px;
+    }
+    .frame .instance .group2147224610 .autoWrapper .group2147224608 .frame2147225469 {
+      display: inline-flex;
+      flex-grow: 1;
+      align-items: center;
+      justify-content: center;
+      column-gap: 6px;
+      border-radius: 10px;
+      background: #584a46;
+      padding: 5px 8px;
+      overflow: hidden;
+    }
+    .frame .instance .group2147224610 .autoWrapper .group2147224608 .frame2147225469 .frame2147225149 {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      border: 1px solid var(--token-line-border-card, #dee0e3);
+      border-radius: 3px;
+      background: #ffffff;
+      padding: 1px;
+      overflow: hidden;
+    }
+    .frame .instance .group2147224610 .autoWrapper .group2147224608 .frame2147225469 .frame2147225149 .workflow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: 2px;
+      border-radius: 16px;
+      background: var(--token-bg-body, #ffffff);
+      padding: 1px 3px;
+      width: 10px;
+      height: 10px;
+      overflow: hidden;
+    }
+    .frame .instance .group2147224610 .autoWrapper .group2147224608 .frame2147225469 .frame2147225149 .workflow .iconAiAgentFilled {
+      flex-shrink: 0;
+      width: 7px;
+      height: 7px;
+      overflow: hidden;
+    }
+    .frame .instance .group2147224610 .autoWrapper .group2147224608 .frame2147225469 .text3 {
+      flex-shrink: 0;
+      width: 90px;
+      line-height: 16px;
+      letter-spacing: 0;
+      color: #ffffff;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 10px;
+    }
+    .frame .instance .group2147224610 .autoWrapper .group2147224612 {
+      display: flex;
+      position: absolute;
+      top: 100px;
+      left: -15px;
+      align-items: center;
+      opacity: 0.9;
+      padding: 1px 1px 1px 0px;
+      width: 84px;
+      height: 25px;
+    }
+    .frame .instance .group2147224610 .autoWrapper .group2147224612 .frame21472254692 {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+      justify-content: center;
+      column-gap: 5px;
+      margin-left: -1px;
+      border-radius: 8px;
+      background: #584a46;
+      padding: 5px 7px;
+      height: 25px;
+      overflow: hidden;
+    }
+    .frame .instance .group2147224610 .autoWrapper .group2147224612 .frame21472254692 .frame21472251492 {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      border: 1px solid var(--token-line-border-card, #dee0e3);
+      border-radius: 3px;
+      background: #ffffff;
+      padding: 1px;
+      overflow: hidden;
+    }
+    .frame .instance .group2147224610 .autoWrapper .group2147224612 .frame21472254692 .frame21472251492 .workflow2 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: 2px;
+      border-radius: 15px;
+      background: var(--token-bg-body, #ffffff);
+      padding: 1px 3px;
+      width: 9px;
+      height: 9px;
+      overflow: hidden;
+    }
+    .frame .instance .group2147224610 .autoWrapper .group2147224612 .frame21472254692 .frame21472251492 .workflow2 .iconMeetingAiFilled {
+      flex-shrink: 0;
+      width: 7px;
+      height: 7px;
+    }
+    .frame .instance .group2147224610 .autoWrapper .group2147224612 .frame21472254692 .text4 {
+      flex-shrink: 0;
+      line-height: 15px;
+      letter-spacing: 0;
+      color: #ffffff;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 9px;
+    }
+    .frame .instance .group2147224610 .autoWrapper .star1 {
+      position: absolute;
+      top: 76px;
+      left: 138px;
+      width: 18px;
+      height: 18px;
+    }
+    .frame .frame2147225611 {
+      position: relative;
+      border: 0.5px solid rgba(222, 224, 227, 0.4);
+      border-radius: 12px;
+      width: 266px;
+      height: 217px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .second-card-hover-actions {
+      position: absolute;
+      bottom: 24px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(5px);
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.1s linear;
+      z-index: 10;
+    }
+
+    .frame .frame2147225611:hover .second-card-hover-actions {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .frame .frame2147225611 .bg {
+      position: absolute;
+      top: -5px;
+      left: -11px;
+      border-radius: 19px;
+      width: 433px;
+      height: 308px;
+    }
+    .frame .frame2147225611 .menuItemLabel4 {
+      display: -webkit-box;
+      position: absolute;
+      top: 94px;
+      left: 22px;
+      width: 222px;
+      height: 133px;
+      overflow: hidden;
+      line-height: 32px;
+      letter-spacing: 0;
+      color: #000000;
+      font-size: 22px;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+    .frame .frame2147225611 .menuItemLabel4 .menuItemLabel {
+      line-height: 32px;
+      letter-spacing: 0;
+      color: #000000;
+      font-family: "Songti SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+    }
+    .frame .frame2147225611 .menuItemLabel4 .menuItemLabel2 {
+      line-height: 32px;
+      letter-spacing: 0;
+      color: #000000;
+      font-family: "Songti SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+    }
+    .frame .frame2147225611 .menuItemLabel4 .menuItemLabel3 {
+      line-height: 32px;
+      letter-spacing: 0;
+      color: #000000;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 22px;
+    }
+    .frame .frame2147225611 .menuItemLabel5 {
+      position: absolute;
+      top: 17px;
+      left: 135px;
+      width: 111px;
+      height: 20px;
+      line-height: 20px;
+      letter-spacing: 0;
+      color: var(--token-text-title, #1f2329);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      transform: skewX(-8deg);
+      rotate: 0deg;
+      font-weight: 400;
+    }
+    .frame .frame2147225611 .menuItemLabel6 {
+      position: absolute;
+      top: 69px;
+      left: 28px;
+      width: 28px;
+      height: 19px;
+      rotate: 0deg;
+    }
+
+    /* Toggle Button Styles */
+    .toggle-container {
+      position: absolute;
+      bottom: 120px; /* Adjusted due to increased frame height */
+      left: 180px; /* Adjusted to match new padding */
+      width: 266px; /* Match the first card's width */
+      display: flex;
+      justify-content: center;
+    }
+
+    .toggle-container-2 {
+      position: absolute;
+      bottom: 120px; /* Adjusted due to increased frame height */
+      right: 180px; /* Adjusted to match new padding */
+      width: 266px; /* Match the second card's width */
+      display: flex;
+      justify-content: center;
+    }
+
+    .toggle-btn {
+      background: #ffffff;
+      color: #646a73; /* Darker gray text */
+      border: 0.5px solid #dee0e3;
+      border-radius: 100px; /* Fully rounded corners */
+      padding: 6px 20px;
+      font-family: "PingFang SC", sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-btn:hover {
+      background: #f5f6f7;
+      transform: translateY(-2px);
+    }
+
+    .toggle-btn:active {
+      background: #e8e9ea;
+      transform: translateY(0);
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .label-hide {
+      display: none !important;
+    }
+
+    /* Status Text Styles */
+    .status-container {
+      position: absolute;
+      top: 122px; /* Adjusted due to increased frame height */
+      left: 180px; /* Adjusted to match new padding */
+      width: 266px; /* Match the first card's width */
+      display: flex;
+      justify-content: center;
+      height: 24px;
+    }
+
+    .status-container-2 {
+      position: absolute;
+      top: 122px; /* Adjusted due to increased frame height */
+      right: 180px; /* Adjusted to match new padding */
+      width: 266px; /* Match the second card's width */
+      display: flex;
+      justify-content: center;
+      height: 24px;
+    }
+
+    .status-text {
+      position: absolute;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: #646a73; /* Darker gray text */
+      opacity: 0;
+      transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      pointer-events: none;
+    }
+
+    .status-text.active {
+      opacity: 1;
+    }
+
+    /* "No Label" State Alternative Elements Styles */
+    .no-label-union {
+      position: absolute;
+      top: 10px;
+      left: 4px;
+    }
+
+    .no-label-union img {
+      width: 36px;
+      height: auto;
+      filter: drop-shadow(2px 6px 25px rgba(0, 0, 0, 0.11));
+    }
+
+    .no-label-group1, .no-label-group2 {
+      display: flex;
+      position: absolute;
+      align-items: center;
+      opacity: 0.9;
+    }
+
+    .no-label-group1 {
+      top: 22px;
+      right: -61px;
+      width: 124px;
+      height: 27px;
+    }
+
+    .no-label-group2 {
+      top: 100px;
+      left: -15px;
+      width: 84px;
+      height: 25px;
+    }
+
+    .no-label-bg {
+      display: inline-flex;
+      flex-grow: 1;
+      align-items: center;
+      column-gap: 8px;
+      border-radius: 10px;
+      background: #584a46;
+      padding: 5px 8px;
+      height: 25px;
+      overflow: hidden;
+    }
+
+    .no-label-icon-wrapper {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      border: 1px solid rgba(222, 224, 227, 0.4);
+      border-radius: 3px;
+      background: #ffffff;
+      padding: 1px;
+      overflow: hidden;
+    }
+
+    .no-label-skeleton-bar {
+      opacity: 0.4;
+      border-radius: 100px;
+      background: rgba(217, 217, 217, 0.5);
+      height: 4px;
+    }
+
+    .no-label-group1 .no-label-skeleton-bar {
+      width: 60px;
+    }
+
+    .no-label-group2 .no-label-skeleton-bar {
+      flex-grow: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <!-- Status Text -->
+    <div class="status-container">
+      <span class="status-text active" id="statusWithData">有数据态</span>
+      <span class="status-text" id="statusNoData">初始无数据态</span>
+    </div>
+
+    <div class="toggle-container">
+      <button class="toggle-btn" id="toggleLabelsBtn">切换</button>
+    </div>
+    <div class="instance">
+      <!-- Hover Content -->
+      <div class="hover-content">
+        <div class="autoWrapper-hover">
+          <img src="./.figma/image/mo10iudg-divnj2s.svg" class="blur-bg-img" />
+          <div class="text-container">
+            <p class="hover-text">
+              根据我写过的文档、参加过的会议、群聊和私聊的聊天记录，一张图分析我的优势和劣势
+            </p>
+          </div>
+        </div>
+        <div class="hover-actions">
+          <div class="hover-icon-btn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </div>
+          <div class="hover-text-btn">
+            <img src="./icon_lark_skill_newicon.svg" width="16" height="16" />
+            <span>使用技能</span>
+          </div>
+        </div>
+      </div>
+      <!-- Original Content -->
+      <div class="group2147224610">
+        <p class="text">Bing，查看你的工作画像</p>
+        <div class="autoWrapper">
+          <div class="rectangle1329137786"></div>
+          <div class="ellipse34735"></div>
+          <img src="./.figma/image/mo0wlbyv-5finms7.svg" class="group2147224561" />
+          <img src="./.figma/image/mo0wlbyv-l57rbir.png" class="group2147224559" />
+          <div class="frame2147225470">
+            <img src="./.figma/image/mo0wlbzo-7begcl2.png" class="image1636403543" />
+          </div>
+          <div class="union">
+            <div class="frame2147225471">
+              <img src="./icon_education-ai_outlined.png" class="iconEducationAiOutli" style="width: 10px; height: 10px; object-fit: contain;" alt="icon" />
+              <p class="text2">设计战略专家</p>
+            </div>
+          </div>
+          <!-- No Label Alternative: Thumbs up -->
+          <div class="no-label-union label-hide">
+            <img src="./zan.png" alt="thumbs up" />
+          </div>
+
+          <div class="group2147224608">
+            <div class="frame2147225469">
+              <img src="./Frame 2147225149.png" alt="icon" style="width: 14px; height: 14px; flex-shrink: 0;" />
+              <p class="text3">国际先进设计领袖&nbsp;&nbsp;&nbsp;</p>
+            </div>
+          </div>
+          <!-- No Label Alternative: Group 1 -->
+          <div class="no-label-group1 label-hide">
+            <div class="no-label-bg">
+              <div class="no-label-icon-wrapper">
+                <img src="./.figma/image/mo11uint-y1btobk.svg" style="width:10px; height:10px;" />
+              </div>
+              <div class="no-label-skeleton-bar"></div>
+            </div>
+          </div>
+
+          <div class="group2147224612">
+            <div class="frame21472254692">
+              <img src="./3.png" alt="icon" style="width: 13px; height: 13px; flex-shrink: 0;" />
+              <p class="text4">AI产品创新者</p>
+            </div>
+          </div>
+          <!-- No Label Alternative: Group 2 -->
+          <div class="no-label-group2 label-hide">
+            <div class="no-label-bg" style="border-radius: 8px;">
+              <div class="no-label-icon-wrapper">
+                <img src="./.figma/image/mo11uint-tjfl62i.svg" style="width:9px; height:9px;" />
+              </div>
+              <div class="no-label-skeleton-bar"></div>
+            </div>
+          </div>
+
+          <img src="./.figma/image/mo0wlbyw-y75gvie.svg" class="star1" />
+        </div>
+      </div>
+    </div>
+    <div class="frame2147225611">
+      <img src="./.figma/image/mo0wlbyw-duhpwi0.png" class="bg" id="secondCardBg" />
+      <p class="menuItemLabel4">
+        <span class="menuItemLabel">Anthropic</span>
+        <span class="menuItemLabel2">
+          上市进程
+          <br />
+          显著加速
+        </span>
+        <span class="menuItemLabel3">;</span>
+        <span class="menuItemLabel2">
+          与高盛、摩根大通等顶级投行合作
+        </span>
+      </p>
+      <p class="menuItemLabel5">科技 · AI资讯 · 融资</p>
+      <img src="./MenuItem-label.svg" class="menuItemLabel6" />
+      
+      <!-- Second Card Hover Content -->
+      <div class="second-card-hover-actions">
+        <div class="hover-text-btn">
+          <img src="./icon_laser_outlined.svg" width="16" height="16" />
+          <span>使用技能</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Card Toggle Button -->
+    <div class="toggle-container-2">
+      <button class="toggle-btn" id="toggleBgBtn">切换</button>
+    </div>
+
+    <!-- Status Text for Second Card -->
+    <div class="status-container-2">
+      <span class="status-text active">背景图可配</span>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // First Card Toggle Logic
+      const toggleBtn = document.getElementById('toggleLabelsBtn');
+      const targetLabels = document.querySelectorAll('.union, .group2147224608, .group2147224612');
+      const altLabels = document.querySelectorAll('.no-label-union, .no-label-group1, .no-label-group2');
+      const statusWithData = document.getElementById('statusWithData');
+      const statusNoData = document.getElementById('statusNoData');
+      let isHidden = false;
+
+      toggleBtn.addEventListener('click', () => {
+        isHidden = !isHidden;
+        
+        // Toggle original labels
+        targetLabels.forEach(label => {
+          if (isHidden) {
+            label.classList.add('label-hide');
+          } else {
+            label.classList.remove('label-hide');
+          }
+        });
+
+        // Toggle alternative "no label" elements
+        altLabels.forEach(alt => {
+          if (isHidden) {
+            alt.classList.remove('label-hide');
+          } else {
+            alt.classList.add('label-hide');
+          }
+        });
+
+        // Toggle status text with animation
+        if (isHidden) {
+          statusWithData.classList.remove('active');
+          statusNoData.classList.add('active');
+        } else {
+          statusNoData.classList.remove('active');
+          statusWithData.classList.add('active');
+        }
+      });
+
+      // Second Card Toggle Logic
+      const toggleBgBtn = document.getElementById('toggleBgBtn');
+      const secondCardBg = document.getElementById('secondCardBg');
+      const backgrounds = [
+        './.figma/image/mo0wlbyw-duhpwi0.png',
+        './pic2.png',
+        './pic3.png'
+      ];
+      let currentBgIndex = 0;
+
+      toggleBgBtn.addEventListener('click', () => {
+        currentBgIndex = (currentBgIndex + 1) % backgrounds.length;
+        secondCardBg.src = backgrounds[currentBgIndex];
+      });
+    });
+  </script>
+</body>
+</html>
